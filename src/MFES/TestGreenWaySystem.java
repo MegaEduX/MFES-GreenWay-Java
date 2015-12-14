@@ -1,3 +1,5 @@
+package MFES;
+
 import org.overture.codegen.runtime.*;
 
 
@@ -27,7 +29,7 @@ public class TestGreenWaySystem extends MyTestCase {
     public void testClient_Devices() {
         Client c = new Client("Joao", 1234567L, 201206113L, 0L);
         Vehicle v = new Vehicle("?", "1-1-1-1-",
-                quotes.IIQuote.getInstance());
+                MFES.quotes.IIQuote.getInstance());
         Device d = new Device("Dispositivo1", v, c);
         c.addDevice(d);
         super.assertEqual(SetUtil.set(d), c.getDevices());
@@ -36,7 +38,7 @@ public class TestGreenWaySystem extends MyTestCase {
     public void testDevice_Create() {
         Client c = new Client("Joao", 1234567L, 201206113L, 0L);
         Vehicle v = new Vehicle("?", "1-1-1-1-",
-                quotes.IIQuote.getInstance());
+                MFES.quotes.IIQuote.getInstance());
         Device d = new Device("Dispositivo1", v, c);
         super.assertEqual("Dispositivo1", d.getId());
         super.assertEqual(v, d.getVehicle());
@@ -46,7 +48,7 @@ public class TestGreenWaySystem extends MyTestCase {
     public void testDevice_History() {
         Client c = new Client("Joao", 1234567L, 201206113L, 0L);
         Vehicle v = new Vehicle("?", "1-1-1-1-",
-                quotes.IIQuote.getInstance());
+                MFES.quotes.IIQuote.getInstance());
         Device d = new Device("Dispositivo1", v, c);
         Park p = new Park("Aliados", "Avenida dos Aliados", 2L);
         GenericEntry mcDrive = new GenericEntry(500L, p);
@@ -56,10 +58,11 @@ public class TestGreenWaySystem extends MyTestCase {
 
     public void testGenericEntry_Create() {
         Vehicle v = new Vehicle("?", "1-1-1-1-",
-                quotes.IIQuote.getInstance());
+                MFES.quotes.IIQuote.getInstance());
         Park p = new Park("Aliados", "Avenida dos Aliados", 2L);
         GenericEntry g = new GenericEntry(500L, p);
         super.assertEqual(500L, g.getValueToPay(v));
+        super.assertEqual(p, g.getProvider());
     }
 
     public void testGreenWayManagement_AddClient() {
@@ -110,9 +113,9 @@ public class TestGreenWaySystem extends MyTestCase {
     public void testHighway_CalculatePrice() {
         Highway h = new Highway("A41", 50L, 20L);
         Vehicle v1 = new Vehicle("?", "1-1-1-1-",
-                quotes.IQuote.getInstance());
+                MFES.quotes.IQuote.getInstance());
         Vehicle v2 = new Vehicle("?", "1-1-1-1-",
-                quotes.IIQuote.getInstance());
+                MFES.quotes.IIQuote.getInstance());
         super.assertEqual(50L * 20L * 1L, h.calculatePrice(v1, 20L));
         super.assertEqual(50L * 20L * 2L, h.calculatePrice(v2, 20L));
     }
@@ -132,6 +135,8 @@ public class TestGreenWaySystem extends MyTestCase {
     public void testPark_Create() {
         Park p = new Park("Aliados", "Avenida dos Aliados", 2L);
         super.assertEqual(2L, p.getCostPerMinute());
+        super.assertEqual("Aliados", p.getName());
+        super.assertEqual("Avenida dos Aliados", p.getAddress());
     }
 
     public void testPark_ChangeCost() {
@@ -152,22 +157,24 @@ public class TestGreenWaySystem extends MyTestCase {
     }
 
     public void testRoute_PriceCalc() {
+        Vehicle v = new Vehicle("?", "1-1-1-1-",
+                MFES.quotes.IIQuote.getInstance());
         Date entryDate = new Date(12L, 51L, 0L, 12L, 12L, 2012L);
         Date exitDate = new Date(13L, 0L, 0L, 12L, 12L, 2012L);
-        Highway hw = new Highway("A42", 12.3, 20L);
+        Highway hw = new Highway("A42", 20L, 12.3);
         HighwayRouteEntry hre = new HighwayRouteEntry(hw, 7.0, entryDate,
                 exitDate);
         Route route = new Route();
         route.addHighwayEntry(hre);
-        super.assertEqual(SeqUtil.seq(hre), route.getEntries());
+        super.assertEqual(280L, route.getValueToPay(v));
     }
 
     public void testVehicle_Create() {
         Vehicle v = new Vehicle("?", "1-1-1-1-",
-                quotes.IIQuote.getInstance());
+                MFES.quotes.IIQuote.getInstance());
         super.assertEqual("?", v.getMake());
         super.assertEqual("1-1-1-1-", v.getPlate());
-        super.assertEqual(quotes.IIQuote.getInstance(),
+        super.assertEqual(MFES.quotes.IIQuote.getInstance(),
             ((Object) v.getVehicleClass()));
     }
 

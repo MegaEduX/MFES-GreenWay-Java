@@ -1,4 +1,4 @@
-package quotes;
+package MFES.quotes;
 
 import org.overture.codegen.runtime.*;
 
@@ -6,19 +6,19 @@ import java.util.*;
 
 
 @SuppressWarnings("all")
-public class VQuote {
+public class IVQuote {
     private static int hc = 0;
-    private static VQuote instance = null;
+    private static IVQuote instance = null;
 
-    public VQuote() {
+    public IVQuote() {
         if (Utils.equals(hc, 0)) {
             hc = super.hashCode();
         }
     }
 
-    public static VQuote getInstance() {
+    public static IVQuote getInstance() {
         if (Utils.equals(instance, null)) {
-            instance = new VQuote();
+            instance = new IVQuote();
         }
 
         return instance;
@@ -29,10 +29,10 @@ public class VQuote {
     }
 
     public boolean equals(final Object obj) {
-        return obj instanceof VQuote;
+        return obj instanceof IVQuote;
     }
 
     public String toString() {
-        return "<V>";
+        return "<IV>";
     }
 }

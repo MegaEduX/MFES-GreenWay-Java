@@ -1,3 +1,5 @@
+import MFES.TestGreenWaySystem;
+
 public class Main {
 
     public static void runTests() {

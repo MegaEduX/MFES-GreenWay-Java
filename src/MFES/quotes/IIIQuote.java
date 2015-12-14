@@ -1,4 +1,4 @@
-package quotes;
+package MFES.quotes;
 
 import org.overture.codegen.runtime.*;
 

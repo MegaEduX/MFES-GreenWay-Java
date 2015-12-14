@@ -1,3 +1,5 @@
+package MFES;
+
 import org.overture.codegen.runtime.*;
 
 import java.util.*;
@@ -28,8 +30,8 @@ public class Route extends Entry {
 
         for (Iterator iterator_1 = entries.iterator(); iterator_1.hasNext();) {
             HighwayRouteEntry e = (HighwayRouteEntry) iterator_1.next();
-            value = value.doubleValue() +
-                e.getHighway().calculatePrice(v, e.getKilometers()).doubleValue();
+            value = value.longValue() +
+                e.getHighway().calculatePrice(v, e.getKilometers()).longValue();
         }
 
         return value;

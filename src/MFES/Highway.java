@@ -1,3 +1,5 @@
+package MFES;
+
 import org.overture.codegen.runtime.*;
 
 
@@ -37,7 +39,7 @@ public class Highway extends ProviderEntity {
     }
 
     public Number calculatePrice(final Vehicle v, final Number l) {
-        return MultiplierForClass(((Object) v.getVehicleClass())).doubleValue() * l.doubleValue() * baseRate.doubleValue();
+        return MultiplierForClass(((Object) v.getVehicleClass())).doubleValue() * l.longValue() * baseRate.longValue();
     }
 
     public static Number MultiplierForClass(final Object cl) {
@@ -45,27 +47,27 @@ public class Highway extends ProviderEntity {
 
         Object quotePattern_1 = cl;
         Boolean success_1 = Utils.equals(quotePattern_1,
-                quotes.IQuote.getInstance());
+                MFES.quotes.IQuote.getInstance());
 
         if (!(success_1)) {
             Object quotePattern_2 = cl;
             success_1 = Utils.equals(quotePattern_2,
-                    quotes.IIQuote.getInstance());
+                    MFES.quotes.IIQuote.getInstance());
 
             if (!(success_1)) {
                 Object quotePattern_3 = cl;
                 success_1 = Utils.equals(quotePattern_3,
-                        quotes.IIIQuote.getInstance());
+                        MFES.quotes.IIIQuote.getInstance());
 
                 if (!(success_1)) {
                     Object quotePattern_4 = cl;
                     success_1 = Utils.equals(quotePattern_4,
-                            quotes.IVQuote.getInstance());
+                            MFES.quotes.IVQuote.getInstance());
 
                     if (!(success_1)) {
                         Object quotePattern_5 = cl;
                         success_1 = Utils.equals(quotePattern_5,
-                                quotes.VQuote.getInstance());
+                                MFES.quotes.VQuote.getInstance());
 
                         if (success_1) {
                             casesExpResult_1 = 0.5;

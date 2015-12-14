@@ -1,3 +1,5 @@
+package MFES;
+
 import org.overture.codegen.runtime.*;
 
 import java.util.*;
@@ -32,6 +34,9 @@ public class Vehicle {
     public String getPlate() {
         return plate;
     }
+
+    //  Original name was getClass()
+    //  Had to be rewritten because getClass() can't be overriden.
 
     public Object getVehicleClass() {
         return cl;

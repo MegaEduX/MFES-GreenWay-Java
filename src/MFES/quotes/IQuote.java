@@ -1,4 +1,4 @@
-package quotes;
+package MFES.quotes;
 
 import org.overture.codegen.runtime.*;
 
@@ -6,19 +6,19 @@ import java.util.*;
 
 
 @SuppressWarnings("all")
-public class appendQuote {
+public class IQuote {
     private static int hc = 0;
-    private static appendQuote instance = null;
+    private static IQuote instance = null;
 
-    public appendQuote() {
+    public IQuote() {
         if (Utils.equals(hc, 0)) {
             hc = super.hashCode();
         }
     }
 
-    public static appendQuote getInstance() {
+    public static IQuote getInstance() {
         if (Utils.equals(instance, null)) {
-            instance = new appendQuote();
+            instance = new IQuote();
         }
 
         return instance;
@@ -29,10 +29,10 @@ public class appendQuote {
     }
 
     public boolean equals(final Object obj) {
-        return obj instanceof appendQuote;
+        return obj instanceof IQuote;
     }
 
     public String toString() {
-        return "<append>";
+        return "<I>";
     }
 }
