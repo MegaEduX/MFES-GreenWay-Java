@@ -27,6 +27,7 @@ public class Main {
             test.testPark_Create();
 
             test.testRoute_Create();
+            test.testRoute_PriceCalc();
 
             test.testVehicle_Create();
         } catch (Exception e) {

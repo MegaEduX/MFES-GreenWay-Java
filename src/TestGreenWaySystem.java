@@ -151,6 +151,17 @@ public class TestGreenWaySystem extends MyTestCase {
         super.assertEqual(SeqUtil.seq(hre), route.getEntries());
     }
 
+    public void testRoute_PriceCalc() {
+        Date entryDate = new Date(12L, 51L, 0L, 12L, 12L, 2012L);
+        Date exitDate = new Date(13L, 0L, 0L, 12L, 12L, 2012L);
+        Highway hw = new Highway("A42", 12.3, 20L);
+        HighwayRouteEntry hre = new HighwayRouteEntry(hw, 7.0, entryDate,
+                exitDate);
+        Route route = new Route();
+        route.addHighwayEntry(hre);
+        super.assertEqual(SeqUtil.seq(hre), route.getEntries());
+    }
+
     public void testVehicle_Create() {
         Vehicle v = new Vehicle("?", "1-1-1-1-",
                 quotes.IIQuote.getInstance());
